@@ -274,7 +274,7 @@ export function SignupForm() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="p-1 hover:text-white transition-colors"
+                    className="p-1 hover:text-ink transition-colors"
                     aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -312,26 +312,26 @@ export function SignupForm() {
                 type="checkbox"
                 checked={formData.agreeTerms}
                 onChange={handleChange}
-                className="mt-1 h-4 w-4 rounded border-zinc-700 bg-zinc-900 text-[#c9a227] focus:ring-[#c9a227] cursor-pointer"
+                className="mt-1 h-4 w-4 rounded-sm border-line-strong bg-white accent-ink focus:ring-ink/10 cursor-pointer"
               />
-              <label htmlFor="agreeTerms" className="text-xs text-zinc-400 cursor-pointer select-none leading-relaxed">
+              <label htmlFor="agreeTerms" className="text-xs text-muted-foreground cursor-pointer select-none leading-relaxed">
                 I agree to the{" "}
-                <a href="#" className="text-[#f1d27a] hover:underline">
+                <a href="#" className="text-ink underline underline-offset-4 decoration-line-strong hover:decoration-ink">
                   Terms of Auction
                 </a>
                 ,{" "}
-                <a href="#" className="text-[#f1d27a] hover:underline">
+                <a href="#" className="text-ink underline underline-offset-4 decoration-line-strong hover:decoration-ink">
                   Commercial Escrow Protocol
                 </a>
                 , and{" "}
-                <a href="#" className="text-[#f1d27a] hover:underline">
+                <a href="#" className="text-ink underline underline-offset-4 decoration-line-strong hover:decoration-ink">
                   Antiquities Ordinance Provenance Declaration
                 </a>
                 .
               </label>
             </div>
             {errors.agreeTerms && (
-              <p className="mt-1.5 text-xs text-red-400">{errors.agreeTerms}</p>
+              <p className="mt-1.5 text-xs text-live">{errors.agreeTerms}</p>
             )}
           </div>
 
@@ -341,16 +341,16 @@ export function SignupForm() {
             variant="gold"
             size="lg"
             isLoading={isLoading}
-            className="w-full text-xs uppercase tracking-wider font-semibold gap-2 mt-4 shadow-lg shadow-[#c9a227]/20 font-mono"
+            className="w-full font-semibold gap-2 mt-4"
           >
             <span>Register Dossier</span>
             <ArrowRight className="h-4 w-4" />
           </Button>
 
           {/* Link to login */}
-          <div className="pt-4 text-center text-xs text-zinc-400 font-mono">
+          <div className="pt-4 text-center text-sm text-muted-foreground">
             Already have an active collector account?{" "}
-            <Link href="/login" className="text-[#f1d27a] font-semibold hover:underline">
+            <Link href="/login" className="text-ink font-semibold underline underline-offset-4 decoration-line-strong hover:decoration-ink">
               Sign In to Bourse
             </Link>
           </div>
