@@ -91,7 +91,7 @@ export function ResetPasswordForm() {
           {formError && (
             <Alert variant="error">
               <p>{formError}</p>
-              <Link href="/forgot-password" className="font-semibold text-[#f1d27a] hover:underline">
+              <Link href="/forgot-password" className="text-ink font-semibold underline underline-offset-4 decoration-line-strong hover:decoration-ink">
                 Request a new link →
               </Link>
             </Alert>
@@ -133,7 +133,7 @@ export function ResetPasswordForm() {
             variant="gold"
             size="lg"
             isLoading={isLoading}
-            className="w-full text-xs uppercase tracking-wider font-semibold gap-2 font-mono"
+            className="w-full font-semibold gap-2"
           >
             <span>Update Password</span>
             <ArrowRight className="h-4 w-4" />
