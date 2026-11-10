@@ -93,11 +93,11 @@ export function ListingDetailView({ id }: { id: string }) {
                   key={image.id}
                   onClick={() => setSelectedImage(index)}
                   aria-label={`Show image ${index + 1}`}
-                  className={`h-20 w-24 shrink-0 overflow-hidden rounded-xl border ${
-                    index === selectedImage ? "border-[#c9a227]" : "border-white/10 opacity-70 hover:opacity-100"
+                  className={`h-20 w-20 shrink-0 overflow-hidden rounded-md border bg-surface ${
+                    index === selectedImage ? "border-ink" : "border-line opacity-70 hover:opacity-100 hover:border-line-strong"
                   }`}
                 >
-                  <ListingImage src={image.url} alt="" className="h-full w-full object-cover" />
+                  <ListingImage src={image.url} alt="" className="h-full w-full object-contain p-1.5" />
                 </button>
               ))}
             </div>
@@ -116,11 +116,11 @@ export function ListingDetailView({ id }: { id: string }) {
               {listing.isFeatured && <Badge variant="cyan">Featured</Badge>}
               {listing.status !== "ACTIVE" && <Badge variant="secondary">{listing.status.replace("_", " ")}</Badge>}
             </div>
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-serif">{listing.title}</h1>
-            <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-400">
+            <h1 className="text-3xl sm:text-[2.5rem] sm:leading-tight font-semibold tracking-tight text-ink font-serif">{listing.title}</h1>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
-                <User className="h-3.5 w-3.5 text-cyan-400" /> Sold by{" "}
-                <span className="text-zinc-200">{listing.seller.name}</span>
+                <User className="h-3.5 w-3.5" /> Sold by{" "}
+                <span className="font-medium text-ink">{listing.seller.name}</span>
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Eye className="h-3.5 w-3.5" /> {listing.viewCount} views
