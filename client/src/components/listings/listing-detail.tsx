@@ -31,21 +31,21 @@ export function ListingDetailView({ id }: { id: string }) {
       const notFound = error instanceof ApiError && (error.status === 404 || error.status === 400);
       return (
         <div className="max-w-2xl mx-auto px-4 py-24 text-center space-y-4">
-          <h1 className="text-2xl font-serif font-bold text-white">
+          <h1 className="text-2xl font-serif font-semibold text-ink">
             {notFound ? "Lot not found" : "Could not load this lot"}
           </h1>
-          <p className="text-sm text-zinc-400">
+          <p className="text-sm text-muted-foreground">
             {notFound
               ? "It may have been withdrawn, or it is still awaiting expert review."
               : errorMessage(error)}
           </p>
           <div className="flex justify-center gap-4 text-sm">
             {!notFound && (
-              <button onClick={reload} className="inline-flex items-center gap-1 text-[#f1d27a] hover:underline">
+              <button onClick={reload} className="inline-flex items-center gap-1 text-ink underline underline-offset-2">
                 <RotateCw className="h-3.5 w-3.5" /> Try again
               </button>
             )}
-            <Link href="/listings" className="text-[#f1d27a] hover:underline">
+            <Link href="/listings" className="text-ink underline underline-offset-2">
               Browse the catalog →
             </Link>
           </div>
@@ -54,11 +54,11 @@ export function ListingDetailView({ id }: { id: string }) {
     }
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid lg:grid-cols-2 gap-10 animate-pulse" aria-busy={loading}>
-        <div className="aspect-[4/3] rounded-3xl bg-[#0d1424]" />
+        <div className="aspect-square rounded-md bg-surface" />
         <div className="space-y-4">
-          <div className="h-8 w-3/4 rounded bg-[#0d1424]" />
-          <div className="h-4 w-1/2 rounded bg-[#0d1424]" />
-          <div className="h-64 rounded-2xl bg-[#0d1424]" />
+          <div className="h-8 w-3/4 rounded bg-surface" />
+          <div className="h-4 w-1/2 rounded bg-surface" />
+          <div className="h-64 rounded-md bg-surface" />
         </div>
       </div>
     );
@@ -75,16 +75,16 @@ export function ListingDetailView({ id }: { id: string }) {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-      <Link href="/listings" className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-[#f1d27a] font-mono">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-12">
+      <Link href="/listings" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-ink">
         <ArrowLeft className="h-3.5 w-3.5" /> Back to catalog
       </Link>
 
-      <div className="grid lg:grid-cols-2 gap-10">
+      <div className="grid lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-10 lg:gap-14">
         {/* Gallery */}
         <div className="space-y-3">
-          <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-[rgba(201,162,39,0.2)] bg-[#080d17]">
-            <ListingImage src={activeImage.url} alt={listing.title} className="h-full w-full object-cover" />
+          <div className="aspect-square rounded-md overflow-hidden border border-line bg-surface">
+            <ListingImage src={activeImage.url} alt={listing.title} className="h-full w-full object-contain p-6 sm:p-10" />
           </div>
           {images.length > 1 && (
             <div className="flex gap-2 overflow-x-auto">
