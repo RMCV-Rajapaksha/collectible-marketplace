@@ -43,10 +43,10 @@ export function ForgotPasswordForm() {
   return (
     <div className="w-full space-y-6">
       <div className="space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-serif">
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink font-serif">
           Reset Your Password
         </h2>
-        <p className="text-xs sm:text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground leading-relaxed">
           Enter your account e-mail and we will send you a link to choose a new password.
         </p>
       </div>
@@ -54,13 +54,13 @@ export function ForgotPasswordForm() {
       {sentMessage ? (
         <Alert variant="success">
           <p>{sentMessage}</p>
-          <p className="text-zinc-400">The link is valid for 30 minutes and can be used once.</p>
+          <p className="text-muted-foreground">The link is valid for 30 minutes and can be used once.</p>
           {process.env.NODE_ENV !== "production" && (
-            <p className="text-zinc-400">
+            <p className="text-muted-foreground">
               Development: no e-mail is sent. The reset token is saved in the payload of the
               user&apos;s newest &quot;Reset your password&quot; notification (browse it with{" "}
-              <code className="text-[#f1d27a]">npm run prisma:studio</code> in backend/), then open{" "}
-              <code className="text-[#f1d27a]">/reset-password?token=…</code>
+              <code className="rounded-sm bg-surface-2 px-1 py-0.5 font-mono text-[12px] text-ink">npm run prisma:studio</code> in backend/), then open{" "}
+              <code className="rounded-sm bg-surface-2 px-1 py-0.5 font-mono text-[12px] text-ink">/reset-password?token=…</code>
             </p>
           )}
         </Alert>
