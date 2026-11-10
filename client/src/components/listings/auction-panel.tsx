@@ -240,10 +240,10 @@ export function AuctionPanel({
                       }}
                       placeholder={String(minNextBid)}
                       aria-label="Bid amount in LKR"
-                      className="h-12 w-full rounded-xl border border-[rgba(201,162,39,0.3)] bg-zinc-950/60 pl-10 pr-3 font-mono text-lg text-zinc-100 focus-visible:outline-none focus-visible:border-[#c9a227]"
+                      className="h-12 w-full rounded-md border border-input bg-white pl-10 pr-3 tabular-nums text-lg text-ink placeholder:text-muted-foreground focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10"
                     />
                   </div>
-                  <Button type="submit" variant="gold" size="lg" isLoading={isBidding} className="gap-2 text-xs uppercase">
+                  <Button type="submit" variant="gold" size="lg" isLoading={isBidding} className="gap-2 px-6">
                     {!isBidding && <Gavel className="h-4 w-4" />} Bid
                   </Button>
                 </div>
@@ -255,26 +255,26 @@ export function AuctionPanel({
                         key={steps}
                         type="button"
                         onClick={() => setAmount(String(quick))}
-                        className="rounded-lg border border-[rgba(201,162,39,0.25)] px-2.5 py-1 text-[11px] font-mono text-zinc-300 hover:border-[#c9a227] hover:text-[#f1d27a]"
+                        className="rounded-md border border-line bg-white px-3 py-1.5 text-xs tabular-nums text-ink-soft hover:border-ink hover:text-ink"
                       >
                         {formatLKR(quick)}
                       </button>
                     );
                   })}
                 </div>
-                <p className="text-[11px] text-zinc-500">Minimum next bid: {formatLKR(minNextBid)}</p>
+                <p className="text-xs text-muted-foreground">Minimum next bid: {formatLKR(minNextBid)}</p>
               </form>
             )}
 
             {buyNowPrice !== null && current < buyNowPrice && (
-              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/30 p-3 space-y-2">
-                <p className="text-xs text-cyan-200">
+              <div className="rounded-md border border-line bg-surface p-4 space-y-3">
+                <p className="text-sm text-ink-soft">
                   Skip the wait - buy it now for{" "}
-                  <span className="font-mono font-semibold">{formatLKR(buyNowPrice)}</span>. This ends the auction.
+                  <span className="font-semibold tabular-nums text-ink">{formatLKR(buyNowPrice)}</span>. This ends the auction.
                 </p>
                 {confirmBuyNow ? (
                   <div className="grid grid-cols-2 gap-2">
-                    <Button variant="cyan" size="sm" isLoading={isBuying} onClick={buyNow} className="text-xs">
+                    <Button variant="gold" size="sm" isLoading={isBuying} onClick={buyNow} className="text-xs">
                       Confirm purchase
                     </Button>
                     <Button variant="ghost" size="sm" onClick={() => setConfirmBuyNow(false)} className="text-xs">
@@ -282,7 +282,7 @@ export function AuctionPanel({
                     </Button>
                   </div>
                 ) : (
-                  <Button variant="cyan" size="sm" onClick={() => setConfirmBuyNow(true)} className="w-full text-xs gap-1.5">
+                  <Button variant="outline" size="sm" onClick={() => setConfirmBuyNow(true)} className="w-full text-xs gap-1.5">
                     <Zap className="h-3.5 w-3.5" /> Buy Now
                   </Button>
                 )}
