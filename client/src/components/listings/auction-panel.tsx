@@ -72,7 +72,7 @@ export function AuctionPanel({
     return auctionQuery.error !== undefined ? (
       <Alert variant="error">{errorMessage(auctionQuery.error, "Could not load the auction.")}</Alert>
     ) : (
-      <div className="h-64 rounded-2xl bg-[#0d1424]/60 animate-pulse" />
+      <div className="h-64 rounded-md bg-surface animate-pulse" />
     );
   }
 
@@ -151,9 +151,9 @@ export function AuctionPanel({
   return (
     <div className="space-y-5">
       {/* Price + timer */}
-      <div className="rounded-2xl border border-[rgba(201,162,39,0.25)] bg-[#0d1424]/80 p-5 space-y-4">
+      <div className="rounded-md border border-line bg-white p-5 sm:p-6 space-y-5">
         <div className="flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest text-cyan-300">
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-live">
             {isOpen ? (
               <>
                 <Radio className="h-3.5 w-3.5 animate-pulse" /> Live auction
@@ -164,29 +164,29 @@ export function AuctionPanel({
               "Auction closed"
             )}
           </span>
-          <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 font-mono">
+          <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground tabular-nums">
             <Users className="h-3.5 w-3.5" /> {auction.bidCount} {auction.bidCount === 1 ? "bid" : "bids"}
           </span>
         </div>
 
         <div>
-          <span className="text-[11px] text-zinc-400 uppercase tracking-wider font-mono">
+          <span className="text-sm text-muted-foreground">
             {auction.status === "ENDED" ? "Final price" : auction.bidCount > 0 ? "Current high bid" : "Opening price"}
           </span>
-          <div className="text-4xl font-bold font-mono text-[#f1d27a]">{formatLKR(current)}</div>
+          <div className="mt-0.5 text-3xl sm:text-4xl font-bold tabular-nums text-ink">{formatLKR(current)}</div>
           {auction.lastBid && isOpen && (
-            <p className="text-[11px] text-cyan-300 mt-1">
+            <p className="text-xs text-ink-soft mt-1.5">
               Latest: {auction.lastBid.bidder.name} bid {formatLKR(auction.lastBid.currentPrice)}
             </p>
           )}
         </div>
 
-        <div className="grid grid-cols-2 gap-3 text-xs">
-          <div className="rounded-xl bg-[#0a0f1a] p-3">
-            <span className="flex items-center gap-1 text-zinc-500 font-mono">
+        <div className="grid grid-cols-2 divide-x divide-line border-y border-line text-xs">
+          <div className="py-3 first:pr-4 last:pl-4">
+            <span className="flex items-center gap-1 text-muted-foreground">
               <Clock className="h-3.5 w-3.5" /> {auction.status === "SCHEDULED" ? "Opens" : "Time left"}
             </span>
-            <span className="block mt-1 font-mono text-sm text-cyan-300">
+            <span className="block mt-1 text-base font-semibold tabular-nums text-live">
               {auction.status === "SCHEDULED" ? (
                 formatDateTime(auction.startTime)
               ) : (
