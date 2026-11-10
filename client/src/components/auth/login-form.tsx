@@ -196,10 +196,10 @@ export function LoginForm() {
                   type="button"
                   variant="outline"
                   size="sm"
-                  className="text-xs gap-2 font-mono"
+                  className="text-xs gap-2"
                   onClick={() => fillDemo(email)}
                 >
-                  <Icon className="h-4 w-4 text-[#f1d27a]" />
+                  <Icon className="h-4 w-4 text-brass" />
                   <span>{label}</span>
                 </Button>
               ))}
@@ -208,9 +208,9 @@ export function LoginForm() {
         )}
 
         {/* Footer note */}
-        <div className="pt-4 text-center text-xs text-zinc-400 font-mono">
+        <div className="pt-4 text-center text-sm text-muted-foreground">
           New to Sri Lankan collecting?{" "}
-          <Link href="/signup" className="text-[#f1d27a] font-semibold hover:underline">
+          <Link href="/signup" className="text-ink font-semibold underline underline-offset-4 decoration-line-strong hover:decoration-ink">
             Register dossier
           </Link>
         </div>
