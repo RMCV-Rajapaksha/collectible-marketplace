@@ -24,7 +24,6 @@ import {
   EyeOff,
   ArrowRight,
   CheckCircle2,
-  Sparkles,
   Gavel,
   Store,
 } from "lucide-react";
@@ -117,14 +116,13 @@ export function SignupForm() {
   return (
     <div className="w-full space-y-6">
       <div className="space-y-2">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[rgba(201,162,39,0.3)] bg-[#101726] text-xs font-mono uppercase tracking-widest text-[#f1d27a]">
-          <Sparkles className="h-3.5 w-3.5 text-[#f1d27a]" />
+        <div className="eyebrow">
           <span>{step === "details" ? "Charter Ceylon Collector" : "Step 2 of 2 · Verify e-mail"}</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-serif">
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink font-serif">
           {step === "verify" ? "Confirm Your E-mail" : "Create Collector Dossier"}
         </h2>
-        <p className="text-xs sm:text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground leading-relaxed">
           {step === "verify"
             ? "Enter the code we e-mailed you to activate your account."
             : "Register to bid in live Colombo auctions and consign rare Ceylon items for expert review."}
@@ -132,19 +130,19 @@ export function SignupForm() {
       </div>
 
       {step === "done" && verifiedUser && (
-        <div className="p-8 rounded-2xl bg-cyan-950/80 border border-cyan-400/50 text-center space-y-4">
-          <div className="h-14 w-14 rounded-full bg-cyan-500/20 text-cyan-400 mx-auto flex items-center justify-center">
+        <div className="p-8 rounded-lg bg-surface border border-line text-center space-y-4">
+          <div className="h-14 w-14 rounded-full bg-success-soft text-success mx-auto flex items-center justify-center">
             <CheckCircle2 className="h-8 w-8" />
           </div>
-          <h3 className="text-xl font-bold text-white font-serif">Dossier Approved!</h3>
-          <p className="text-xs text-zinc-300 leading-relaxed max-w-sm mx-auto">
+          <h3 className="text-xl font-semibold text-ink font-serif">Dossier Approved!</h3>
+          <p className="text-sm text-ink-soft leading-relaxed max-w-sm mx-auto">
             Welcome, {verifiedUser.name}. Your {verifiedUser.role === "SELLER" ? "consignor" : "collector"}{" "}
             account is active and you are signed in.
           </p>
           <div className="pt-2">
             <Button
               variant="gold"
-              className="text-xs uppercase tracking-wider font-semibold font-mono"
+              className="font-semibold"
               onClick={() => router.push("/listings")}
             >
               Explore Live Lots
