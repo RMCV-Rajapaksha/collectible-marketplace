@@ -262,18 +262,18 @@ export function HeroSection() {
           {/* Mini social proof numbers */}
           <motion.div
             variants={slideUp}
-            className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-2 text-center"
+            className="flex flex-wrap items-start gap-x-10 gap-y-4 pt-6 border-t border-line w-full"
           >
             {[
               { value: "6,800+", label: "Collectors" },
               { value: "රු 385M+", label: "Transacted" },
               { value: "18,400+", label: "Certified Lots" },
             ].map(({ value, label }) => (
-              <div key={label} className="flex flex-col items-center lg:items-start">
-                <span className="text-xl font-extrabold font-mono text-[#f1d27a] leading-tight">
+              <div key={label} className="flex flex-col items-start">
+                <span className="font-serif text-2xl font-semibold tabular-nums text-ink leading-tight">
                   {value}
                 </span>
-                <span className="text-[11px] uppercase tracking-wider text-zinc-400 font-mono">
+                <span className="text-xs text-muted-foreground">
                   {label}
                 </span>
               </div>
@@ -281,157 +281,82 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
 
-        {/* ---- RIGHT: Floating visual showcase ----------------------------- */}
+        {/* ---- RIGHT: Visual showcase ------------------------------------- */}
         <motion.div
-          className="relative hidden lg:flex items-center justify-center"
+          className="relative hidden lg:block lg:col-span-5"
           style={{ y: showcaseY }}
           initial={shouldReduce ? {} : { opacity: 0 }}
-          animate={shouldReduce ? {} : { opacity: 1, transition: { duration: 0.5 } }}
+          animate={shouldReduce ? {} : { opacity: 1, transition: { duration: 0.4 } }}
         >
-          {/* Central glowing orb */}
-          <div className="relative h-[380px] w-[380px]">
-            {/* Gold ambient orb */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#c9a227]/25 via-[#f1d27a]/10 to-transparent blur-3xl" />
-            {/* Cyan auction halo */}
-            <div className="absolute inset-4 rounded-full border border-dashed border-cyan-400/20 animate-spin" style={{ animationDuration: "30s" }} />
-            {/* Inner gold ring */}
-            <div className="absolute inset-10 rounded-full border border-[#c9a227]/30" />
-
-            {/* Central coin placeholder */}
-            {shouldReduce ? (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="h-32 w-32 rounded-full bg-gradient-to-br from-[#c9a227] to-[#f1d27a] flex items-center justify-center shadow-2xl shadow-[#c9a227]/40 border-4 border-[#f1d27a]/30">
-                  <span className="text-6xl">🪙</span>
-                </div>
-              </div>
-            ) : (
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <motion.div
-                  className="h-36 w-36 rounded-full bg-gradient-to-br from-[#c9a227] via-[#e2be49] to-[#f1d27a] flex items-center justify-center border-4 border-[#f1d27a]/40"
-                  style={{
-                    boxShadow:
-                      "0 0 60px rgba(201,162,39,0.5), 0 0 120px rgba(201,162,39,0.25), inset 0 2px 4px rgba(255,255,255,0.3)",
-                  }}
-                  animate={{ scale: [1, 1.04, 1] }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <span className="text-7xl select-none">🪙</span>
-                </motion.div>
-              </motion.div>
-            )}
-
-            {/* Orbiting collectible cards */}
-            {COLLECTIBLES.map((item) => (
-              <div
-                key={item.id}
-                className="absolute"
-                style={{
-                  top: "50%",
-                  left: "50%",
-                  marginTop: item.offsetY,
-                  marginLeft: item.offsetX,
-                  transform: "translate(-50%, -50%)",
-                }}
-              >
-                <FloatCard item={item} shouldReduce={shouldReduce} />
-              </div>
-            ))}
+          <div className="rounded-lg border border-line bg-surface p-4">
+            <div className="grid grid-cols-2 gap-4">
+              {COLLECTIBLES.map((item) => (
+                <ShowcaseTile key={item.id} item={item} shouldReduce={shouldReduce} />
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
-
-      {/* -------------------------------------------------------------------- */}
-      {/* Scroll hint                                                           */}
-      {/* -------------------------------------------------------------------- */}
-      {!shouldReduce && (
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 text-zinc-500"
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 0.6 }}
-        >
-          <span className="text-[10px] uppercase tracking-widest font-mono">Scroll to explore</span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown className="h-5 w-5" />
-          </motion.div>
-        </motion.div>
-      )}
 
       {/* -------------------------------------------------------------------- */}
       {/* Trust indicators — whileInView, mobile-stacked, desktop row          */}
       {/* -------------------------------------------------------------------- */}
-      <div className="absolute bottom-0 inset-x-0 z-10">
-        {/* Gradient fade into the trust bar */}
-        <div className="h-32 w-full bg-gradient-to-t from-[#0a0e17] via-[#0a0e17]/70 to-transparent pointer-events-none" />
-
-        <motion.div
-          className="bg-[#0a0e17]/95 border-t border-[rgba(201,162,39,0.2)] backdrop-blur-xl"
-          initial={shouldReduce ? {} : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={
-            shouldReduce
-              ? { duration: 0.2 }
-              : {
-                  duration: MOTION_TOKENS.duration.standard,
-                  ease: MOTION_TOKENS.ease.expoOut,
-                }
-          }
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-8 lg:gap-12"
-              variants={shouldReduce ? {} : staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-40px" }}
-            >
-              {TRUST_ITEMS.map(({ icon: Icon, title, desc, color, glow, border }) => (
-                <motion.div
-                  key={title}
-                  variants={
-                    shouldReduce
-                      ? {}
-                      : {
-                          hidden: { opacity: 0, y: 16 },
-                          visible: {
-                            opacity: 1,
-                            y: 0,
-                            transition: {
-                              duration: MOTION_TOKENS.duration.standard,
-                              ease: MOTION_TOKENS.ease.expoOut,
-                            },
+      <motion.div
+        className="bg-surface border-t border-line"
+        initial={shouldReduce ? {} : { opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={
+          shouldReduce
+            ? { duration: 0.2 }
+            : {
+                duration: MOTION_TOKENS.duration.standard,
+                ease: MOTION_TOKENS.ease.expoOut,
+              }
+        }
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-0 sm:divide-x sm:divide-line"
+            variants={shouldReduce ? {} : staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-40px" }}
+          >
+            {TRUST_ITEMS.map(({ icon: Icon, title, desc }) => (
+              <motion.div
+                key={title}
+                variants={
+                  shouldReduce
+                    ? {}
+                    : {
+                        hidden: { opacity: 0, y: 8 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            duration: MOTION_TOKENS.duration.standard,
+                            ease: MOTION_TOKENS.ease.expoOut,
                           },
-                        }
-                  }
-                  className={`flex items-start gap-3.5 p-4 rounded-2xl border ${border} bg-white/[0.025] ${glow} transition-all duration-300 hover:bg-white/[0.04]`}
-                >
-                  {/* Icon badge */}
-                  <div
-                    className={`mt-0.5 h-9 w-9 flex-shrink-0 rounded-xl flex items-center justify-center ${color} bg-white/5 border ${border}`}
-                  >
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </div>
+                        },
+                      }
+                }
+                className="flex items-start gap-3.5 sm:px-6 sm:first:pl-0 sm:last:pr-0"
+              >
+                {/* Icon */}
+                <Icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brass" aria-hidden="true" />
 
-                  <div className="min-w-0">
-                    <p className={`text-sm font-bold font-serif ${color}`}>{title}</p>
-                    <p className="mt-0.5 text-[11px] text-zinc-400 leading-relaxed font-sans">
-                      {desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-ink">{title}</p>
+                  <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                    {desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.div>
     </section>
   );
 }
