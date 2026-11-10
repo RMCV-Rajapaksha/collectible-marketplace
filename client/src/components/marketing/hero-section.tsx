@@ -9,16 +9,8 @@ import {
   useTransform,
   Variants,
 } from "framer-motion";
-import {
-  ShieldCheck,
-  Lock,
-  BadgeCheck,
-  ArrowRight,
-  Sparkles,
-  ChevronDown,
-} from "lucide-react";
+import { ShieldCheck, Lock, BadgeCheck, ArrowRight } from "lucide-react";
 
-import { AnimatedBackground } from "@/components/shared/animated-background";
 import { Button } from "@/components/ui/button";
 import {
   MOTION_TOKENS,
@@ -36,13 +28,12 @@ function makeSlideUp(shouldReduce: boolean): Variants {
     };
   }
   return {
-    hidden: { opacity: 0, y: 28, filter: "blur(4px)" },
+    hidden: { opacity: 0, y: 14 },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
       transition: {
-        duration: MOTION_TOKENS.duration.luxurious,
+        duration: MOTION_TOKENS.duration.standard,
         ease: MOTION_TOKENS.ease.expoOut,
       },
     },
@@ -55,8 +46,8 @@ function makeHeroContainer(shouldReduce: boolean): Variants {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: shouldReduce ? 0 : 0.13,
-        delayChildren: shouldReduce ? 0 : 0.1,
+        staggerChildren: shouldReduce ? 0 : 0.08,
+        delayChildren: shouldReduce ? 0 : 0.05,
       },
     },
   };
