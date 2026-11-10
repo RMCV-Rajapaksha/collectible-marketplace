@@ -184,48 +184,39 @@ export function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8"
+      className="relative bg-white border-b border-line"
       aria-label="LankaNumis hero — Sri Lankan collectibles marketplace"
     >
-      {/* Ambient animated background lives in fixed position */}
-      <AnimatedBackground intensity="vibrant" showGlints />
-
       {/* ------------------------------------------------------------------ */}
       {/* Main content grid                                                    */}
       {/* ------------------------------------------------------------------ */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center pt-20 pb-24 lg:pt-28 lg:pb-32">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center py-16 md:py-24">
 
         {/* ---- LEFT: Text + CTAs ----------------------------------------- */}
         <motion.div
-          className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-7"
+          className="lg:col-span-7 flex flex-col items-start text-left space-y-7"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* Eye-catcher tag */}
           <motion.div variants={slideUp}>
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[rgba(201,162,39,0.4)] bg-[#101726]/90 backdrop-blur-sm text-xs font-mono text-[#f1d27a]">
-              <Sparkles
-                className="h-4 w-4 text-[#c9a227]"
-                style={
-                  shouldReduce
-                    ? {}
-                    : { animation: "spin 9s linear infinite" }
-                }
-              />
-              <span>Sri Lanka&apos;s Premier Certified Bourse</span>
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-zinc-400">SLNS · PCGS · NGC · PMG</span>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="eyebrow">Sri Lanka&apos;s Premier Certified Bourse</span>
+              <span className="h-3 w-px bg-line-strong" aria-hidden="true" />
+              <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                SLNS · PCGS · NGC · PMG
+              </span>
             </div>
           </motion.div>
 
           {/* Headline */}
           <motion.h1
             variants={slideUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white font-serif leading-[1.1]"
+            className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-ink font-serif leading-[1.08]"
           >
             Discover, Bid &amp; Preserve{" "}
-            <span className="gold-gradient-text decoration-wavy underline decoration-[#c9a227]/40 decoration-2">
+            <span className="italic text-brass">
               2,300 Years
             </span>{" "}
             of Lankan Heritage
@@ -234,7 +225,7 @@ export function HeroSection() {
           {/* Sub-headline */}
           <motion.p
             variants={slideUp}
-            className="text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl font-light"
+            className="text-base sm:text-lg text-ink-soft leading-relaxed max-w-xl"
           >
             Authenticated coins, historic currency notes, Ceylon stamps &amp; state medals — every lot spectral-verified and sold under Central Bank–regulated escrow. Buy and sell with absolute confidence.
           </motion.p>
@@ -242,26 +233,26 @@ export function HeroSection() {
           {/* CTAs */}
           <motion.div
             variants={slideUp}
-            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:w-auto"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto"
           >
-            {/* Primary — gold gradient */}
+            {/* Primary — solid ink */}
             <a href="#featured" className="w-full sm:w-auto">
               <Button
                 variant="gold"
                 size="lg"
-                className="w-full sm:w-auto text-xs uppercase tracking-widest px-8 gap-2.5 shadow-xl shadow-[#c9a227]/25 font-mono"
+                className="w-full sm:w-auto px-8 gap-2"
               >
                 <span>Explore Listings</span>
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </a>
 
-            {/* Secondary — outline / ghost */}
+            {/* Secondary — outline */}
             <Link href="/signup" className="w-full sm:w-auto">
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto text-xs uppercase tracking-widest px-7 font-mono border-[rgba(201,162,39,0.35)] hover:border-[#c9a227] hover:text-[#f1d27a]"
+                className="w-full sm:w-auto px-7"
               >
                 Start Selling
               </Button>
