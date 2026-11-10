@@ -156,7 +156,7 @@ export function LoginForm() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="p-1 hover:text-white transition-colors"
+                className="p-1 hover:text-ink transition-colors"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -172,7 +172,7 @@ export function LoginForm() {
           variant="gold"
           size="lg"
           isLoading={isLoading}
-          className="w-full text-xs uppercase tracking-wider font-semibold gap-2 mt-2 shadow-lg shadow-[#c9a227]/20 font-mono"
+          className="w-full font-semibold gap-2 mt-2"
         >
           <span>Sign In to Bourse</span>
           <ArrowRight className="h-4 w-4" />
@@ -182,11 +182,11 @@ export function LoginForm() {
         {DEMO_ACCOUNTS_ENABLED && (
           <div className="pt-4 space-y-3">
             <div className="relative flex items-center justify-center">
-              <div className="border-t border-[rgba(201,162,39,0.15)] w-full" />
-              <span className="bg-[#0c121e] px-3 text-[11px] text-zinc-500 uppercase tracking-widest font-mono whitespace-nowrap">
+              <div className="border-t border-line w-full" />
+              <span className="bg-white px-3 text-[11px] text-muted-foreground uppercase tracking-widest whitespace-nowrap">
                 or use a seeded account
               </span>
-              <div className="border-t border-[rgba(201,162,39,0.15)] w-full" />
+              <div className="border-t border-line w-full" />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
