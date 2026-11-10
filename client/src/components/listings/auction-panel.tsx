@@ -293,13 +293,13 @@ export function AuctionPanel({
 
         {/* Closed */}
         {auction.status === "ENDED" && (
-          <div className="rounded-2xl border border-[rgba(201,162,39,0.25)] bg-[#0d1424]/70 p-4 space-y-3">
-            <p className="flex items-center gap-2 text-sm text-white">
-              <Trophy className="h-4 w-4 text-[#f1d27a]" />
+          <div className="rounded-md border border-line bg-surface p-5 space-y-3">
+            <p className="flex items-center gap-2 text-sm text-ink">
+              <Trophy className="h-4 w-4 text-brass" />
               {winner ? (
                 <>
                   Won by <span className="font-semibold">{isWinner ? "you" : winner.name}</span> for{" "}
-                  <span className="font-mono text-[#f1d27a]">{formatLKR(current)}</span>
+                  <span className="font-semibold tabular-nums">{formatLKR(current)}</span>
                 </>
               ) : (
                 "This auction closed without bids."
@@ -317,25 +317,25 @@ export function AuctionPanel({
 
       {/* Bid history */}
       <div className="space-y-2">
-        <h3 className="text-sm font-semibold text-white font-serif">Bid history</h3>
+        <h3 className="text-[13px] font-semibold uppercase tracking-wider text-ink">Bid history</h3>
         {bidHistory.length > 0 ? (
-          <ul className="divide-y divide-white/5 rounded-xl border border-white/5 bg-[#0a0f1a]/60">
+          <ul className="divide-y divide-line border-y border-line">
             {bidHistory.map((bid) => (
-              <li key={bid.id} className="flex items-center justify-between px-3 py-2 text-xs">
-                <span className="text-zinc-300">
+              <li key={bid.id} className="flex items-center justify-between py-2.5 text-sm">
+                <span className="text-ink-soft">
                   {user?.id === bid.bidder.id ? "You" : bid.bidder.name}
-                  {bid.status === "ACTIVE" && <span className="ml-2 text-[10px] text-cyan-400">LEADING</span>}
-                  {bid.status === "WON" && <span className="ml-2 text-[10px] text-[#f1d27a]">WON</span>}
+                  {bid.status === "ACTIVE" && <span className="ml-2 text-[10px] font-semibold tracking-wider text-live">LEADING</span>}
+                  {bid.status === "WON" && <span className="ml-2 text-[10px] font-semibold tracking-wider text-success">WON</span>}
                 </span>
                 <span className="flex items-center gap-3">
-                  <span className="text-zinc-500">{formatDateTime(bid.placedAt)}</span>
-                  <span className="font-mono text-[#f1d27a]">{formatLKR(bid.amount)}</span>
+                  <span className="text-xs text-muted-foreground">{formatDateTime(bid.placedAt)}</span>
+                  <span className="font-semibold tabular-nums text-ink">{formatLKR(bid.amount)}</span>
                 </span>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-xs text-zinc-500">
+          <p className="text-sm text-muted-foreground">
             {bidsQuery.loading ? "Loading bids…" : "No bids yet - be the first."}
           </p>
         )}
