@@ -41,9 +41,9 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${cinzel.variable} dark antialiased`}
+      className={`${geistSans.variable} ${display.variable} antialiased`}
     >
-      <body className="min-h-screen bg-[#0a0e17] text-zinc-100 flex flex-col font-sans">
+      <body className="min-h-screen bg-background text-foreground flex flex-col font-sans">
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
