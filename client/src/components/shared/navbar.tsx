@@ -137,19 +137,19 @@ export function Navbar() {
             ) : status === "guest" ? (
               <>
                 <Link href="/login">
-                  <Button variant="ghost" size="sm" className="text-xs uppercase tracking-wider text-zinc-300">
+                  <Button variant="ghost" size="sm">
                     Sign In
                   </Button>
                 </Link>
                 <Link href="/signup">
-                  <Button variant="gold" size="sm" className="text-xs uppercase tracking-wider gap-1.5 shadow-md">
+                  <Button variant="gold" size="sm" className="gap-1.5 rounded-full px-5">
                     <span>Join Bourse</span>
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Button>
                 </Link>
               </>
             ) : (
-              <div className="h-8 w-36 rounded-lg bg-white/5 animate-pulse" aria-hidden />
+              <div className="h-9 w-36 rounded-md bg-surface animate-pulse" aria-hidden />
             )}
           </div>
 
@@ -157,7 +157,7 @@ export function Navbar() {
           <div className="flex sm:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+              className="p-2 rounded-md text-ink hover:bg-surface transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -166,38 +166,53 @@ export function Navbar() {
         </div>
       </div>
 
+      {/* Section nav */}
+      <nav className="hidden lg:block border-t border-line">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-8 h-11">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="relative h-full inline-flex items-center text-[13px] font-medium text-ink-soft hover:text-ink transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-ink after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
       {/* Mobile menu drawer */}
       {mobileMenuOpen && (
-        <div className="sm:hidden bg-[#0a0e17]/98 backdrop-blur-2xl border-b border-[rgba(201,162,39,0.2)] px-5 pt-4 pb-6 space-y-4">
+        <div className="sm:hidden bg-white border-t border-line px-5 pt-4 pb-6 space-y-4">
           <form onSubmit={submitSearch} role="search" className="relative">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <input
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               aria-label="Search listings"
               placeholder="Search Kahavanu, Ceylon notes, stamps..."
-              className="w-full bg-[#0d1524] text-sm text-zinc-200 placeholder:text-zinc-500 rounded-xl pl-10 pr-3 py-2.5 border border-[rgba(201,162,39,0.25)] focus:outline-none"
+              className="w-full h-11 bg-surface text-sm text-ink placeholder:text-[#9a968d] rounded-full pl-10 pr-3 border border-transparent focus:outline-none focus:bg-white focus:border-ink"
             />
           </form>
-          <div className="flex flex-col space-y-1">
+          <div className="flex flex-col divide-y divide-line">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 text-base font-medium text-zinc-200 hover:text-[#f1d27a] hover:bg-white/5 rounded-lg"
+                className="py-3 text-[15px] font-medium text-ink hover:text-brass"
               >
                 {link.name}
               </Link>
             ))}
           </div>
-          <div className="pt-3 border-t border-white/10 flex flex-col gap-2.5">
+          <div className="pt-3 border-t border-line flex flex-col gap-2.5">
             {status === "authenticated" && user ? (
               <>
-                <p className="text-sm text-zinc-300 px-1">
-                  Signed in as <span className="font-semibold text-white">{user.name}</span>{" "}
-                  <span className="text-xs text-[#8fa0be]">({ROLE_LABELS[user.role]})</span>
+                <p className="text-sm text-ink-soft">
+                  Signed in as <span className="font-semibold text-ink">{user.name}</span>{" "}
+                  <span className="text-xs text-muted-foreground">({ROLE_LABELS[user.role]})</span>
                 </p>
                 <Button
                   variant="outline"
