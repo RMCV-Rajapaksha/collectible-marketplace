@@ -128,14 +128,14 @@ export function ListingCard({ listing }: { listing: ListingCardData }) {
               )}
             </Button>
           </Link>
-        </div>
 
-        <div className="pt-2 flex items-center justify-between text-[11px] text-zinc-400 border-t border-white/5">
-          <span className="flex items-center gap-1.5 text-zinc-300 truncate">
-            <ShieldCheck className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
-            {listing.seller.name}
-          </span>
-          <span className="font-mono">{listing.viewCount} views</span>
+          <div className="flex items-center justify-between gap-2 text-[11px] text-muted-foreground">
+            <span className="flex items-center gap-1.5 truncate">
+              <ShieldCheck className="h-3.5 w-3.5 shrink-0" />
+              {listing.seller.name}
+            </span>
+            <span className="tabular-nums">{listing.viewCount} views</span>
+          </div>
         </div>
       </div>
     </div>
@@ -145,13 +145,13 @@ export function ListingCard({ listing }: { listing: ListingCardData }) {
 /** Placeholder card shown while listings load. */
 export function ListingCardSkeleton() {
   return (
-    <div className="rounded-3xl border border-[rgba(201,162,39,0.12)] bg-[#0d1424]/50 overflow-hidden animate-pulse">
-      <div className="h-60 bg-[#111a2b]" />
-      <div className="p-6 space-y-3">
-        <div className="h-3 w-1/3 rounded bg-[#1a2438]" />
-        <div className="h-5 w-4/5 rounded bg-[#1a2438]" />
-        <div className="h-8 w-1/2 rounded bg-[#1a2438] mt-6" />
-        <div className="h-8 w-full rounded bg-[#1a2438]" />
+    <div className="animate-pulse">
+      <div className="aspect-square rounded-md bg-surface" />
+      <div className="pt-3.5 space-y-2.5">
+        <div className="h-4 w-4/5 rounded bg-surface" />
+        <div className="h-3 w-1/3 rounded bg-surface" />
+        <div className="h-6 w-1/2 rounded bg-surface mt-4" />
+        <div className="h-8 w-full rounded bg-surface" />
       </div>
     </div>
   );
