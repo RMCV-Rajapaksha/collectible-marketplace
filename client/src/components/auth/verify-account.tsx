@@ -40,10 +40,10 @@ export function VerifyAccount() {
   return (
     <div className="w-full space-y-6">
       <div className="space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-serif">
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink font-serif">
           Verify Your Account
         </h2>
-        <p className="text-xs sm:text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground leading-relaxed">
           New accounts must confirm the 6-digit code sent by e-mail before signing in.
         </p>
       </div>
@@ -54,7 +54,7 @@ export function VerifyAccount() {
           <button
             type="button"
             onClick={() => setConfirmedEmail("")}
-            className="w-full text-center text-xs text-zinc-500 hover:text-zinc-300 font-mono"
+            className="w-full text-center text-xs text-muted-foreground underline-offset-4 hover:text-ink hover:underline"
           >
             Use a different e-mail address
           </button>
