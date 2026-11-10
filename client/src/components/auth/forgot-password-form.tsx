@@ -91,7 +91,7 @@ export function ForgotPasswordForm() {
             variant="gold"
             size="lg"
             isLoading={isLoading}
-            className="w-full text-xs uppercase tracking-wider font-semibold gap-2 font-mono"
+            className="w-full font-semibold gap-2"
           >
             <span>Send Reset Link</span>
             <ArrowRight className="h-4 w-4" />
@@ -99,9 +99,9 @@ export function ForgotPasswordForm() {
         </form>
       )}
 
-      <div className="text-center text-xs text-zinc-400 font-mono">
+      <div className="text-center text-sm text-muted-foreground">
         Remembered it?{" "}
-        <Link href="/login" className="text-[#f1d27a] font-semibold hover:underline">
+        <Link href="/login" className="text-ink font-semibold underline underline-offset-4 decoration-line-strong hover:decoration-ink">
           Back to sign in
         </Link>
       </div>
