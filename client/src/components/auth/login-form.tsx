@@ -92,10 +92,10 @@ export function LoginForm() {
   return (
     <div className="w-full space-y-6">
       <div className="space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white font-serif">
+        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink font-serif">
           Access Collector Dossier
         </h2>
-        <p className="text-xs sm:text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground leading-relaxed">
           Enter your credentials to manage bids, watch live Ceylon auctions, and track your orders.
         </p>
       </div>
@@ -105,7 +105,7 @@ export function LoginForm() {
           <Alert variant="error">
             <p>{formError}</p>
             {needsVerification && (
-              <Link href={verifyHref} className="font-semibold text-[#f1d27a] hover:underline">
+              <Link href={verifyHref} className="text-ink font-semibold underline underline-offset-4 decoration-line-strong hover:decoration-ink">
                 Enter your verification code →
               </Link>
             )}
@@ -138,7 +138,7 @@ export function LoginForm() {
             </Label>
             <Link
               href="/forgot-password"
-              className="text-[11px] text-zinc-400 hover:text-[#f1d27a] transition-colors font-mono"
+              className="text-xs text-muted-foreground underline-offset-4 hover:text-ink hover:underline transition-colors"
             >
               Forgot password?
             </Link>
