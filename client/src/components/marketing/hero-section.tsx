@@ -62,60 +62,28 @@ const COLLECTIBLES = [
     label: "1957 Buddha Jayanthi Crown",
     sublabel: "0.925 Silver · PCGS MS-66 PL",
     emoji: "🪙",
-    accent: "from-[#c9a227]/30 to-[#f1d27a]/10",
-    border: "border-[#c9a227]/40",
-    glow: "shadow-[0_0_32px_rgba(201,162,39,0.35)]",
-    rotate: -8,
-    offsetX: -120,
-    offsetY: -30,
-    delay: 0,
-    floatAmp: 10,
-    floatDur: 5.8,
+    delay: 0.15,
   },
   {
     id: "note-1",
     label: "King George VI 1000 Rupees",
     sublabel: "1941 Ceylon · PMG UNC 64 EPQ",
     emoji: "💵",
-    accent: "from-emerald-500/20 to-teal-400/10",
-    border: "border-emerald-400/30",
-    glow: "shadow-[0_0_32px_rgba(52,211,153,0.22)]",
-    rotate: 4,
-    offsetX: 120,
-    offsetY: -50,
-    delay: 0.4,
-    floatAmp: 13,
-    floatDur: 6.5,
+    delay: 0.25,
   },
   {
     id: "stamp-1",
     label: "1857 Chalon Head 6d",
     sublabel: "Ceylon Imperf · Spink Superb 95",
     emoji: "✉️",
-    accent: "from-indigo-500/20 to-blue-400/10",
-    border: "border-indigo-400/30",
-    glow: "shadow-[0_0_28px_rgba(99,102,241,0.22)]",
-    rotate: 12,
-    offsetX: 40,
-    offsetY: 80,
-    delay: 0.75,
-    floatAmp: 8,
-    floatDur: 7.1,
+    delay: 0.35,
   },
   {
     id: "medal-1",
     label: "1948 Independence Medal",
     sublabel: "Ceylon Police · Original Ribbon",
     emoji: "🏅",
-    accent: "from-rose-500/20 to-amber-400/10",
-    border: "border-rose-400/30",
-    glow: "shadow-[0_0_26px_rgba(244,63,94,0.18)]",
-    rotate: -5,
-    offsetX: -60,
-    offsetY: 90,
-    delay: 1.05,
-    floatAmp: 11,
-    floatDur: 6.2,
+    delay: 0.45,
   },
 ];
 
@@ -127,100 +95,66 @@ const TRUST_ITEMS = [
     icon: BadgeCheck,
     title: "Verified Sellers",
     desc: "Every dealer is KYC-cleared by our Colombo curatorial board.",
-    color: "text-[#f1d27a]",
-    glow: "shadow-[0_0_20px_rgba(201,162,39,0.2)]",
-    border: "border-[rgba(201,162,39,0.25)]",
   },
   {
     icon: Lock,
     title: "Secure Escrow",
     desc: "All funds held in CB-regulated commercial bank escrow until delivery.",
-    color: "text-cyan-400",
-    glow: "shadow-[0_0_20px_rgba(34,211,238,0.18)]",
-    border: "border-cyan-400/25",
   },
   {
     icon: ShieldCheck,
     title: "Certified Authenticity",
     desc: "PCGS · NGC · PMG · SLNS spectral analysis on every lot.",
-    color: "text-emerald-400",
-    glow: "shadow-[0_0_20px_rgba(52,211,153,0.18)]",
-    border: "border-emerald-400/25",
   },
 ];
 
 // ---------------------------------------------------------------------------
-// Floating collectible card sub-component
+// Showcase tile sub-component
 // ---------------------------------------------------------------------------
-interface FloatCardProps {
+interface ShowcaseTileProps {
   item: (typeof COLLECTIBLES)[number];
   shouldReduce: boolean;
 }
 
-function FloatCard({ item, shouldReduce }: FloatCardProps) {
-  if (shouldReduce) {
-    return (
-      <div
-        key={item.id}
-        style={{ transform: `rotate(${item.rotate}deg)` }}
-        className={`
-          absolute w-44 rounded-2xl border ${item.border}
-          bg-gradient-to-br ${item.accent}
-          backdrop-blur-xl p-4 ${item.glow}
-          flex flex-col gap-2
-        `}
-      >
-        <span className="text-4xl">{item.emoji}</span>
-        <p className="text-xs font-bold text-white font-serif leading-tight">
+const TILE_CLASS =
+  "flex flex-col gap-3 rounded-md border border-line bg-white p-4 transition-colors duration-150 hover:border-ink";
+
+function ShowcaseTile({ item, shouldReduce }: ShowcaseTileProps) {
+  const content = (
+    <>
+      <div className="flex aspect-[4/3] items-center justify-center rounded-sm bg-surface">
+        <span className="text-5xl select-none" aria-hidden="true">
+          {item.emoji}
+        </span>
+      </div>
+      <div className="space-y-1">
+        <p className="font-serif text-sm font-semibold leading-snug text-ink">
           {item.label}
         </p>
-        <p className="text-[10px] text-zinc-400 font-mono">{item.sublabel}</p>
+        <p className="text-xs text-muted-foreground">{item.sublabel}</p>
       </div>
-    );
+    </>
+  );
+
+  if (shouldReduce) {
+    return <div className={TILE_CLASS}>{content}</div>;
   }
 
   return (
     <motion.div
-      key={item.id}
-      className={`
-        absolute w-44 rounded-2xl border ${item.border}
-        bg-gradient-to-br ${item.accent}
-        backdrop-blur-xl p-4 ${item.glow}
-        flex flex-col gap-2 cursor-pointer select-none
-      `}
-      style={{ rotate: item.rotate }}
-      initial={{ opacity: 0, scale: 0.75, y: 20 }}
+      className={TILE_CLASS}
+      initial={{ opacity: 0, y: 10 }}
       animate={{
         opacity: 1,
-        scale: 1,
-        y: [0, -item.floatAmp, 0],
+        y: 0,
         transition: {
-          opacity: {
-            delay: item.delay,
-            duration: 0.6,
-            ease: MOTION_TOKENS.ease.expoOut,
-          },
-          scale: {
-            delay: item.delay,
-            duration: 0.6,
-            ease: MOTION_TOKENS.ease.expoOut,
-          },
-          y: {
-            delay: item.delay + 0.5,
-            duration: item.floatDur,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-          },
+          delay: item.delay,
+          duration: MOTION_TOKENS.duration.standard,
+          ease: MOTION_TOKENS.ease.expoOut,
         },
       }}
-      whileHover={{ scale: 1.07, zIndex: 20, transition: { duration: 0.2 } }}
     >
-      <span className="text-4xl">{item.emoji}</span>
-      <p className="text-xs font-bold text-white font-serif leading-tight">
-        {item.label}
-      </p>
-      <p className="text-[10px] text-zinc-400 font-mono">{item.sublabel}</p>
+      {content}
     </motion.div>
   );
 }
@@ -240,7 +174,7 @@ export function HeroSection() {
   const showcaseY = useTransform(
     scrollYProgress,
     [0, 1],
-    shouldReduce ? [0, 0] : [0, -60]
+    shouldReduce ? [0, 0] : [0, -24]
   );
 
   // Variant factories
