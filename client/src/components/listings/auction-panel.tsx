@@ -194,12 +194,12 @@ export function AuctionPanel({
               )}
             </span>
           </div>
-          <div className="rounded-xl bg-[#0a0f1a] p-3">
-            <span className="text-zinc-500 font-mono">Min. increment</span>
-            <span className="block mt-1 font-mono text-sm text-zinc-200">{formatLKR(increment)}</span>
+          <div className="py-3 first:pr-4 last:pl-4">
+            <span className="text-muted-foreground">Min. increment</span>
+            <span className="block mt-1 text-base font-semibold tabular-nums text-ink">{formatLKR(increment)}</span>
           </div>
         </div>
-        <p className="text-[11px] text-zinc-500">
+        <p className="text-xs text-muted-foreground">
           Closes {formatDateTime(auction.endTime)}. A bid in the final 2 minutes extends the close.
         </p>
       </div>
@@ -211,7 +211,7 @@ export function AuctionPanel({
 
         {isOpen && authStatus === "guest" && (
           <Link href={loginHref(pathname)} className="block">
-            <Button variant="gold" size="lg" className="w-full text-xs uppercase tracking-wider gap-2">
+            <Button variant="gold" size="lg" className="w-full gap-2">
               <Gavel className="h-4 w-4" /> Sign in to bid
             </Button>
           </Link>
@@ -227,7 +227,7 @@ export function AuctionPanel({
               <form onSubmit={placeBid} className="space-y-2" noValidate>
                 <div className="flex gap-2">
                   <div className="relative flex-1">
-                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-zinc-500">රු</span>
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">රු</span>
                     <input
                       type="number"
                       inputMode="decimal"
