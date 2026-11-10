@@ -167,8 +167,8 @@ export function SignupForm() {
 
           {/* Account type -> RegisterDto.role */}
           <fieldset>
-            <legend className="mb-1.5 block text-xs font-medium text-zinc-300">
-              I want to <span className="text-[#f1d27a]">*</span>
+            <legend className="mb-1.5 block text-xs font-medium text-ink">
+              I want to <span className="text-live">*</span>
             </legend>
             <div className="grid grid-cols-2 gap-3">
               {ROLE_OPTIONS.map(({ value, title, description, icon: Icon }) => {
@@ -176,10 +176,10 @@ export function SignupForm() {
                 return (
                   <label
                     key={value}
-                    className={`cursor-pointer rounded-xl border p-3 transition-all ${
+                    className={`cursor-pointer rounded-md border p-3 transition-colors ${
                       selected
-                        ? "border-[#c9a227] bg-[#c9a227]/10"
-                        : "border-[rgba(201,162,39,0.2)] bg-[#0d1424] hover:border-[rgba(201,162,39,0.45)]"
+                        ? "border-ink bg-surface ring-1 ring-ink"
+                        : "border-line bg-white hover:border-line-strong"
                     }`}
                   >
                     <input
@@ -190,10 +190,10 @@ export function SignupForm() {
                       onChange={handleChange}
                       className="sr-only"
                     />
-                    <span className="flex items-center gap-2 text-sm font-semibold text-white">
-                      <Icon className="h-4 w-4 text-[#f1d27a]" /> {title}
+                    <span className="flex items-center gap-2 text-sm font-semibold text-ink">
+                      <Icon className="h-4 w-4 text-brass" /> {title}
                     </span>
-                    <span className="mt-1 block text-[11px] leading-snug text-zinc-400">
+                    <span className="mt-1 block text-[11px] leading-snug text-muted-foreground">
                       {description}
                     </span>
                   </label>
